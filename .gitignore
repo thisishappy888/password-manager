@@ -1,3 +1,4 @@
 secret.key
 venv/
 app.log
+database.db

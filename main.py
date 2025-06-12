@@ -112,16 +112,16 @@ class PasswordManagerApp:
         self.load_initial_state()
 
     def setup_ui(self):
-        self.name_field = ft.TextField(width=250, visible=False)
-        self.password_field = ft.TextField(width=300, visible=False)
+        self.name_field = ft.TextField(width=250, visible=False, label="Service / App name")
+        self.password_field = ft.TextField(width=300, visible=False, label="Password")
         self.passwords_list = ft.Column(scroll=True)
 
-        self.input_field = ft.TextField(label="Введите текст", width=300, password=True)
-        self.add_master_password_input = ft.TextField(label="Введите master", width=300, visible=False, password=True)
+        self.input_field = ft.TextField(label="Enter Master Password", width=300, password=True)
+        self.add_master_password_input = ft.TextField(label="Set Master Password", width=300, visible=False, password=True)
 
-        self.submit_btn = ft.ElevatedButton("Проверить", on_click=self.check_input, visible=False)
-        self.submit_master_btn = ft.ElevatedButton("Задать", on_click=self.add_master_password, visible=False)
-        self.add_button = ft.Button(text='Добавить', on_click=self.add_password, visible=False)
+        self.submit_btn = ft.ElevatedButton("Unlock", on_click=self.check_input, visible=False)
+        self.submit_master_btn = ft.ElevatedButton("Set Master Password", on_click=self.add_master_password, visible=False)
+        self.add_button = ft.Button(text='Add', on_click=self.add_password, visible=False)
 
 
         self.container_passwords = ft.Container(
@@ -198,7 +198,7 @@ class PasswordManagerApp:
                 password_block = self.create_password_block(id, name_decrypt, password_decrypt)
                 self.passwords_list.controls.append(password_block)
         except Exception as e:
-            print(f"Ошибка: {e}")
+            print(f"Error: {e}")
 
         self.page.update()
                 
@@ -212,7 +212,7 @@ class PasswordManagerApp:
                         ),
                         ft.Row(
                         [
-                            ft.TextButton('Удалить', on_click = lambda e: self.delete_password(e, id))
+                            ft.TextButton('Delete', on_click = lambda e: self.delete_password(e, id))
                         ],
                         alignment=ft.MainAxisAlignment.END
                     )
